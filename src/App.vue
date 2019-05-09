@@ -2,60 +2,94 @@
   <q-layout id="q-app" view="lHh Lpr lFf">
     <q-layout-header>
       <q-toolbar
-        color="primary"
+        color="white"
         :glossy="$q.theme === 'mat'"
         :inverted="$q.theme === 'ios'"
       >
-        <q-btn
-          flat
-          dense
-          round
-          @click="leftDrawerOpen = !leftDrawerOpen"
-          aria-label="Menu"
-          icon="menu"
-        />
-
-        <q-toolbar-title>
-          Quasar App
-          <div slot="subtitle">Running on Quasar v{{ $q.version }}</div>
+        <q-toolbar-title class="text-primary text-center">
+          SRS Bassoon GUI Interface Proposal
         </q-toolbar-title>
       </q-toolbar>
     </q-layout-header>
-
-    <q-layout-drawer
-      v-model="leftDrawerOpen"
-      :content-class="$q.theme === 'mat' ? 'bg-grey-2' : null"
-    >
-      <q-list
-        no-border
-        link
-        inset-delimiter
-      >
-        <q-list no-border link inset-delimiter>
-          <q-list-header>Essential Links</q-list-header>
-          <q-item @click.native="openURL('http://quasar-framework.org')">
-            <q-item-side icon="school" />
-            <q-item-main label="Docs" sublabel="quasar-framework.org"></q-item-main>
-          </q-item>
-          <q-item @click.native="openURL('https://discord.gg/5TDhbDg')">
-            <q-item-side icon="chat" />
-            <q-item-main label="Discord Chat Channel" sublabel="https://discord.gg/5TDhbDg"></q-item-main>
-          </q-item>
-          <q-item @click.native="openURL('http://forum.quasar-framework.org')">
-            <q-item-side icon="forum" />
-            <q-item-main label="Forum" sublabel="forum.quasar-framework.org"></q-item-main>
-          </q-item>
-          <q-item @click.native="openURL('https://twitter.com/quasarframework')">
-            <q-item-side icon="rss feed" />
-            <q-item-main label="Twitter" sublabel="@quasarframework"></q-item-main>
-          </q-item>
-        </q-list>
-      </q-list>
-    </q-layout-drawer>
-
-    <q-page-container>
-      <HelloWorld />
-    </q-page-container>
+    <div class="row">
+      <div class="col-3">
+        <!-- left column -->
+        <q-card class="q-ma-md">
+          <q-card-title class="text-center">Pitch</q-card-title>
+          <q-card-separator />
+          <q-card-main>
+            Image displaying sheet music notation
+          </q-card-main>
+        </q-card>
+        <q-card class="q-ma-md">
+          <q-card-title class="text-center">Fingering Chart</q-card-title>
+          <q-card-separator />
+          <q-card-main>
+            Detailed fingering chart
+          </q-card-main>
+        </q-card>
+      </div>
+      <div class="col-6">
+        <!-- center content -->
+        <q-card class="q-ma-md">
+          <q-card-title class="text-center">Note In Finger Chart</q-card-title>
+          <q-card-separator />
+          <q-card-main>
+            Preceding, Current, Next
+          </q-card-main>
+        </q-card>
+        <q-card class="q-ma-md">
+          <q-card-title class="text-center">Lesson Box</q-card-title>
+          <q-card-separator />
+          <q-card-main>
+            <!-- router injects here -->
+            <q-page-container>
+              <HelloWorld />
+            </q-page-container>
+            <!-- end router injection -->
+          </q-card-main>
+        </q-card>
+      </div>
+      <div class="col-3">
+        <!-- right column -->
+        <q-card class="text-center q-ma-md">
+          <q-card-title>Breath</q-card-title>
+          <q-card-separator />
+          <q-card-main>
+            <q-knob
+              v-model="breath"
+              :min="1"
+              :max="10"
+              color="primary"
+            />
+          </q-card-main>
+        </q-card>
+        <q-card class="text-center q-ma-md">
+          <q-card-title>Difficulty</q-card-title>
+          <q-card-separator />
+          <q-card-main>
+            <q-knob
+              v-model="difficulty"
+              :min="1"
+              :max="10"
+              color="red"
+            />
+          </q-card-main>
+        </q-card>
+        <q-card class="text-center q-ma-md">
+          <q-card-title>Tempo</q-card-title>
+          <q-card-separator />
+          <q-card-main>
+            <q-knob
+              v-model="tempo"
+              :min="1"
+              :max="10"
+              color="secondary"
+            />
+          </q-card-main>
+        </q-card>
+      </div>
+    </div>
   </q-layout>
 </template>
 
@@ -70,7 +104,9 @@ export default {
   },
   data () {
     return {
-      leftDrawerOpen: this.$q.platform.is.desktop
+      breath: 8,
+      difficulty: 6,
+      tempo: 5
     }
   },
   methods: {
@@ -80,4 +116,7 @@ export default {
 </script>
 
 <style>
+#q-app {
+  margin-top: 60px;
+}
 </style>
