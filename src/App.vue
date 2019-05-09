@@ -1,86 +1,83 @@
 <template>
-  <v-app>
-    <v-toolbar app>
-      <v-toolbar-title class="headline text-uppercase">
-        <span>Vuetify</span>
-        <span class="font-weight-light">MATERIAL DESIGN</span>
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn
-        flat
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
+  <q-layout id="q-app" view="lHh Lpr lFf">
+    <q-layout-header>
+      <q-toolbar
+        color="primary"
+        :glossy="$q.theme === 'mat'"
+        :inverted="$q.theme === 'ios'"
       >
-        <span class="mr-2">Latest Release</span>
-      </v-btn>
-    </v-toolbar>
-    <v-container fluid grid-list-md>
-      <v-layout row wrap>
-        <!-- left column -->
-        <v-flex xs12 md3>
-          <v-card class="layout-card">
-            <v-card-title>Pitch</v-card-title>
-            <v-card-content>Sheet Music Printout</v-card-content>
-          </v-card>
-          <v-card class="layout-card">
-            <v-card-title>Fingering Chart</v-card-title>
-            <v-card-content>Chart of finger position for notes</v-card-content>
-          </v-card>
-        </v-flex>
-        <!-- center content -->
-        <v-flex xs12 md6>
-          <v-card class="layout-card">
-            <v-card-title>Notes</v-card-title>
-            <v-card-content>Preceding, current, and next notes</v-card-content>
-          </v-card>
-          <v-card class="layout-card">
-            <v-card-title>Lesson Box</v-card-title>
-            <v-card-content>
-              <v-content>
-                <HelloWorld/>
-              </v-content>
-            </v-card-content>
-          </v-card>
-        </v-flex>
-        <v-flex xs12 md3>
-          <v-card class="layout-card">
-            <v-card-title>Breath</v-card-title>
-            <v-card-content>Meter/Countdown</v-card-content>
-          </v-card>
-          <v-card class="layout-card">
-            <v-card-title>Difficulty</v-card-title>
-            <v-card-content>Meter, slider</v-card-content>
-          </v-card>
-          <v-card class="layout-card">
-            <v-card-title>Tempo</v-card-title>
-            <v-card-content>Meter, slider</v-card-content>
-          </v-card>
-        </v-flex>
-      </v-layout>
-    </v-container>
+        <q-btn
+          flat
+          dense
+          round
+          @click="leftDrawerOpen = !leftDrawerOpen"
+          aria-label="Menu"
+          icon="menu"
+        />
 
-  </v-app>
+        <q-toolbar-title>
+          Quasar App
+          <div slot="subtitle">Running on Quasar v{{ $q.version }}</div>
+        </q-toolbar-title>
+      </q-toolbar>
+    </q-layout-header>
+
+    <q-layout-drawer
+      v-model="leftDrawerOpen"
+      :content-class="$q.theme === 'mat' ? 'bg-grey-2' : null"
+    >
+      <q-list
+        no-border
+        link
+        inset-delimiter
+      >
+        <q-list no-border link inset-delimiter>
+          <q-list-header>Essential Links</q-list-header>
+          <q-item @click.native="openURL('http://quasar-framework.org')">
+            <q-item-side icon="school" />
+            <q-item-main label="Docs" sublabel="quasar-framework.org"></q-item-main>
+          </q-item>
+          <q-item @click.native="openURL('https://discord.gg/5TDhbDg')">
+            <q-item-side icon="chat" />
+            <q-item-main label="Discord Chat Channel" sublabel="https://discord.gg/5TDhbDg"></q-item-main>
+          </q-item>
+          <q-item @click.native="openURL('http://forum.quasar-framework.org')">
+            <q-item-side icon="forum" />
+            <q-item-main label="Forum" sublabel="forum.quasar-framework.org"></q-item-main>
+          </q-item>
+          <q-item @click.native="openURL('https://twitter.com/quasarframework')">
+            <q-item-side icon="rss feed" />
+            <q-item-main label="Twitter" sublabel="@quasarframework"></q-item-main>
+          </q-item>
+        </q-list>
+      </q-list>
+    </q-layout-drawer>
+
+    <q-page-container>
+      <HelloWorld />
+    </q-page-container>
+  </q-layout>
 </template>
 
 <script>
-import HelloWorld from './components/Proposal'
+import { openURL } from 'quasar'
+import HelloWorld from './components/HelloWorld.vue'
 
 export default {
-  name: 'App',
+  name: 'LayoutDefault',
   components: {
     HelloWorld
   },
   data () {
     return {
-      //
+      leftDrawerOpen: this.$q.platform.is.desktop
     }
+  },
+  methods: {
+    openURL
   }
 }
 </script>
 
 <style>
-  .layout-card {
-    margin: 2em;
-    padding: 1em;
-  }
 </style>
