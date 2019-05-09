@@ -6,22 +6,22 @@
         :glossy="$q.theme === 'mat'"
         :inverted="$q.theme === 'ios'"
       >
-        <q-toolbar-title class="text-center">
+        <q-toolbar-title class="text-center text-tertiary text-weight-bolder uppercase">
           SRS Bassoon GUI Interface Proposal
         </q-toolbar-title>
       </q-toolbar>
     </q-layout-header>
-    <div class="row">
-      <div class="col-3">
+    <div class="row items-stretch">
+      <div class="col-xs-12 col-md-3">
         <!-- left column -->
-        <q-card class="q-ma-md">
+        <q-card color ="white" class="text-black q-ma-md">
           <q-card-title class="text-center bg-primary text-white">Pitch</q-card-title>
           <q-card-separator />
           <q-card-main>
             <img src="./assets/sheet-music.gif" alt="Shows pitch" class="img-embed">
           </q-card-main>
         </q-card>
-        <q-card class="q-ma-md">
+        <q-card color ="white" class="text-black q-ma-md">
           <q-card-title class="text-center bg-primary text-white">Fingering Chart</q-card-title>
           <q-card-separator />
           <q-card-main>
@@ -39,16 +39,17 @@
           />
         </div>
       </div>
-      <div class="col-6">
+      <div class="col-xs-12 col-md-6">
         <!-- center content -->
-        <q-card class="q-ma-md">
+        <q-card color ="white" class="text-black q-ma-md">
           <q-card-title class="text-center bg-primary text-white">Note In Finger Chart</q-card-title>
           <q-card-separator />
-          <q-card-main>
-            Preceding, Current, Next
+          <q-card-main class="text-center">
+            <!-- Preceding, Current, Next -->
+            <img src="./assets/swantech.png" alt="Swan-Tech" class="img-embed">
           </q-card-main>
         </q-card>
-        <q-card class="q-ma-md">
+        <q-card color ="white" class="text-black q-ma-md">
           <q-card-title class="text-center bg-primary text-white">Lesson Box</q-card-title>
           <q-card-separator />
           <q-card-main>
@@ -60,9 +61,9 @@
           </q-card-main>
         </q-card>
       </div>
-      <div class="col-3">
+      <div class="col-xs-12 col-md-3">
         <!-- right column -->
-        <q-card class="text-center q-ma-md">
+        <q-card color ="white" class="text-center text-black q-ma-md">
           <q-card-title class="bg-primary text-white">Breath</q-card-title>
           <q-card-separator />
           <q-card-main>
@@ -73,17 +74,9 @@
               color="primary"
             />
             <p>This can be calculated however needed - based on notes, time, etc.</p>
-            <q-slider
-              v-model="breath"
-              :min="0"
-              :max="10"
-              :step="1"
-              label
-              snap
-            />
           </q-card-main>
         </q-card>
-        <q-card class="text-center q-ma-md">
+        <q-card color ="white" class="text-center text-black q-ma-md">
           <q-card-title class="bg-primary text-white">Difficulty</q-card-title>
           <q-card-separator />
           <q-card-main>
@@ -101,10 +94,11 @@
               :step="1"
               label
               snap
+              color="red"
             />
           </q-card-main>
         </q-card>
-        <q-card class="text-center q-ma-md">
+        <q-card color ="white" class="text-center text-black q-ma-md">
           <q-card-title class="bg-primary text-white">Tempo</q-card-title>
           <q-card-separator />
           <q-card-main>
@@ -112,6 +106,15 @@
               v-model="tempo"
               :min="1"
               :max="10"
+              color="secondary"
+            />
+            <q-slider
+              v-model="tempo"
+              :min="0"
+              :max="10"
+              :step="1"
+              label
+              snap
               color="secondary"
             />
           </q-card-main>
@@ -122,7 +125,7 @@
 </template>
 
 <script>
-import { openURL } from 'quasar'
+import { openURL,colors } from 'quasar'
 import HelloWorld from './components/HelloWorld.vue'
 
 export default {
@@ -132,23 +135,39 @@ export default {
   },
   data () {
     return {
-      mode: 'Pro',
-      breath: 8,
+      mode: 'Practical',
+      breath: 10,
       difficulty: 6,
-      tempo: 5
+      tempo: 5,
+      defaultPrimary: ''
     }
   },
   methods: {
     openURL
+  },
+  watch: {
+    mode: function(set) {
+      // watch what mode is set and change color theme accordingly
+      if (set==='Pro') {
+        this.defaultPrimary = colors.getBrand('primary');
+        colors.setBrand('primary','#333');
+      }
+      else if (set === 'Practical') {
+        colors.setBrand('primary',this.defaultPrimary);
+      }
+    }
   }
 }
 </script>
 
-<style>
-#q-app {
-  margin-top: 60px;
-}
-.img-embed {
-  max-width: 100%;
-}
+<style lang="stylus">
+@import './styles/quasar.variables'
+body
+  margin: 0
+  padding: 0
+  background-color: $tertiary
+#q-app
+  margin-top: 60px
+.img-embed
+  max-width: 80%
 </style>
