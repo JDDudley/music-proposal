@@ -50,7 +50,7 @@
                 <q-btn label="Preceeding Note" class="full-width" disable />
               </div>
               <div class="col-xs-4">
-                <q-btn label="Current Note" color="primary" class="full-width" />
+                <q-btn label="Current Note" color="primary" class="full-width" disable />
               </div>
               <div class="col-xs-4">
                 <q-btn label="Next Note" class="full-width" disable />
