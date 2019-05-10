@@ -12,7 +12,7 @@
       </q-toolbar>
     </q-layout-header>
     <div class="row items-stretch">
-      <div class="col-xs-12 col-md-3">
+      <div class="col-xs-12 col-md-3 parent-col">
         <!-- left column -->
         <q-card color ="white" class="text-black q-ma-md">
           <q-card-title class="text-center bg-primary text-white">Pitch</q-card-title>
@@ -39,13 +39,19 @@
           />
         </div>
       </div>
-      <div class="col-xs-12 col-md-6">
+      <div class="col-xs-12 col-md-6 parent-col">
         <!-- center content -->
         <q-card color ="white" class="text-black q-ma-md">
           <q-card-title class="text-center bg-primary text-white">Note In Finger Chart</q-card-title>
           <q-card-separator />
           <q-card-main class="text-center">
-            <!-- Preceding, Current, Next -->
+            <div class="row" style="width: 100%;">
+              <div class="xs3"><strong>Preceeding</strong></div>
+              <div class="xs1"></div>
+              <div class="xs4"><strong>Current</strong></div>
+              <div class="xs1"></div>
+              <div class="xs3"><strong>Next</strong></div>
+            </div>
             <img src="./assets/swantech.png" alt="Swan-Tech" class="img-embed">
           </q-card-main>
         </q-card>
@@ -55,13 +61,13 @@
           <q-card-main>
             <!-- router injects here -->
             <q-page-container>
-              <HelloWorld />
+              <Process />
             </q-page-container>
             <!-- end router injection -->
           </q-card-main>
         </q-card>
       </div>
-      <div class="col-xs-12 col-md-3">
+      <div class="col-xs-12 col-md-3 parent-col">
         <!-- right column -->
         <q-card color ="white" class="text-center text-black q-ma-md">
           <q-card-title class="bg-primary text-white">Breath</q-card-title>
@@ -126,12 +132,14 @@
 
 <script>
 import { openURL,colors } from 'quasar'
-import HelloWorld from './components/HelloWorld.vue'
+import Proposal from './components/Proposal.vue'
+import Process from './components/Process.vue'
 
 export default {
   name: 'LayoutDefault',
   components: {
-    HelloWorld
+    Proposal,
+    Process
   },
   data () {
     return {
@@ -162,12 +170,17 @@ export default {
 
 <style lang="stylus">
 @import './styles/quasar.variables'
+html 
+  background-color: $tertiary
 body
   margin: 0
   padding: 0
   background-color: $tertiary
 #q-app
   margin-top: 60px
+  background-color: $tertiary
+.parent-col
+  background-color: $tertiary
 .img-embed
   max-width: 80%
 </style>
