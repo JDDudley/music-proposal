@@ -25,7 +25,7 @@
           <q-card-title class="text-center bg-primary text-white">Fingering Chart</q-card-title>
           <q-card-separator />
           <q-card-main>
-            <img src="./assets/fingering-chart.jpg" alt="Detailed bassoon fingering chart" class="img-embed">
+            <img src="./assets/fingering-chart.jpg" alt="Detailed bassoon fingering chart " class="img-embed">
           </q-card-main>
         </q-card>
         <div class="text-center">
