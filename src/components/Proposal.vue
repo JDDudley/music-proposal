@@ -1,6 +1,7 @@
 <template>
   <div class="component">
-    
+    <h4>Proposal</h4>
+    <router-link to="/process">Process</router-link>
   </div>
 </template>
 
