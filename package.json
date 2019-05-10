@@ -13,7 +13,8 @@
     "express": "^4.16.4",
     "quasar-extras": "^2.0.4",
     "quasar-framework": "^0.17.0",
-    "vue": "^2.6.10"
+    "vue": "^2.6.10",
+    "vue-router": "^3.0.3"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.7.0",
