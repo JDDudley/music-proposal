@@ -58,28 +58,28 @@
               <div class="col-xs-12"><br><br></div>
               <div class="col-xs-4 text-right">
                 <router-link to="/process">
-                  <span class="linkButtons">Development Process</span>
+                  <span class="linkButtons">Process</span>
                   <q-btn round color="primary" icon="code" class="linkIcons" />
                 </router-link>
                 <br>
                 <router-link to="/timeline">
-                  <span class="linkButtons">Project Timeline</span>
+                  <span class="linkButtons">Timeline</span>
                   <q-btn round color="primary" icon="alarm" class="linkIcons" />
                 </router-link>
               </div>
               <div class="col-xs-4">
                 <br>
-                <img src="./assets/swantech.png" alt="Swan-Tech" class="img-embed">
+                <img src="./assets/swantech.png" to="/" alt="Swan-Tech" class="img-embed">
               </div>
               <div class="col-xs-4 text-left">
                 <router-link to="/pricing">
                   <q-btn round color="primary" icon="attach_money" class="linkIcons" />
-                  <span class="linkButtons">Project Pricing</span>
+                  <span class="linkButtons">Pricing</span>
                 </router-link>
                 <br>
                 <router-link to="/terms">
                   <q-btn round color="primary" icon="info" class="linkIcons" />
-                  <span class="linkButtons">Project Terms</span>
+                  <span class="linkButtons">Terms</span>
                 </router-link>
               </div>
             </div>
