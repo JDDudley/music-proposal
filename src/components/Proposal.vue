@@ -1,6 +1,5 @@
 <template>
   <div class="component">
-    <h4>Proposal</h4>
     <div class="row">
       <div class="col-xs-6">
         <router-link to="/process">
